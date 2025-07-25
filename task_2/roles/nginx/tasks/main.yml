@@ -1,0 +1,11 @@
+- name: Install Nginx
+  yum:
+   name: nginx
+   state: present
+   update_cache: yes 
+
+- name: Start and enable nginx
+  ansible.builtin.service:
+    name: nginx
+    state: started
+    enabled: true

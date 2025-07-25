@@ -1,0 +1,10 @@
+- name: decrypting and printing the secret content of a file
+  hosts: localhost
+  vars_files:
+    - secret_file.yaml
+
+  tasks:
+    - name: print the secret values in the terminal
+      debug:
+        var: secrets
+

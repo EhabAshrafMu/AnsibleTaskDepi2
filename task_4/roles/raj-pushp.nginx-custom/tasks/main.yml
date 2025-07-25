@@ -1,0 +1,27 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for my_nginx
+- name: Install Nginx
+  yum:
+    name: nginx
+    state: present
+
+- name: Start nginx
+  service:
+    name: nginx
+    state: started
+
+- name: Update worker_processes in nginx.conf
+  ansible.builtin.lineinfile:
+    path: /etc/nginx/nginx.conf
+    regexp: '^worker_processes'
+    line: 'worker_processes 2;'
+  notify:
+    - Restart Nginx
+
+- name: Update the default index.html page
+  ansible.builtin.copy:
+    content: '<h1>This page was updated by an Ansible Handler Demo! for {{ inventory_hostname }} at {{ ansible_date_time.iso8601 }}</h1>'
+    dest: /usr/share/nginx/html/index.html
+  notify:
+    - Restart Nginx

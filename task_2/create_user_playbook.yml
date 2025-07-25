@@ -1,0 +1,6 @@
+- name: A playbook for creating a user using a role
+  hosts: web
+  gather_facts: yes
+  become: yes
+  roles:
+    - create_user

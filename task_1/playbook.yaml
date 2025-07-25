@@ -1,0 +1,16 @@
+- name: A playbook for installing Nginx
+  hosts: web
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+        update_cache: yes 
+
+    - name: Start and enable Nginx service
+      service:
+        name: nginx
+        state: started
+        enabled: true

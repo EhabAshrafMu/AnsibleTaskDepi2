@@ -1,0 +1,13 @@
+---
+# tasks file for roles/create_dir_file
+- name: Create directory and file
+  file:
+    path: "{{ home_path }}/{{ dir_name }}"
+    state: directory
+    mode: '0755'
+
+- name: Create test file
+  file:
+    path: "{{ home_path }}/{{ dir_name }}/{{ file_name }}"
+    state: touch
+    mode: '0744'

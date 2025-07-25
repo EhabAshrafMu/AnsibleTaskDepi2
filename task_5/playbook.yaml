@@ -1,0 +1,20 @@
+- name: A playbook for copying a file and updating the /etc/motd file if the file was changed
+  hosts: web
+  gather_facts: yes
+  become: yes
+  vars:
+    home_path: "/home/deploy1"
+  tasks:
+    - name: Copy the test_file to dest
+      copy:
+        src: ./test_file
+        dest: "{{ home_path }}/test_file"
+      notify: update motd
+
+  handlers:
+    - name: update motd
+      lineinfile:
+        path: /etc/motd
+        line: "test file updated at {{ ansible_date_time.time }}"
+        create: yes
+

@@ -1,0 +1,21 @@
+- name: A playbook for installing Nginx
+  hosts: web
+  gather_facts: yes
+  become: yes
+  tasks:
+    - name: Create an index.html file from a jinja2 template and copy it to the destination.
+      template:
+        src: index.html.j2
+        dest: /usr/share/nginx/html/index.html
+        owner: nginx #The user here is nginx not www-data because I'm using RHEL9
+        group: nginx
+        mode: '0644'
+      notify: Restart Nginx
+
+
+  handlers:
+    - name: Restart Nginx
+      service:
+        name: nginx
+        state: restarted
+

@@ -1,0 +1,7 @@
+---
+# tasks file for roles/create_user
+- name: Create a user from an ansible role
+  user:
+    name: role_user
+    comment: user created from the ansible role for the depi second task
+    create_home: yes

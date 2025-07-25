@@ -1,0 +1,6 @@
+- name: A playbook for installing Nginx using a role
+  hosts: web
+  gather_facts: yes
+  become: yes
+  roles:
+    - raj-pushp.nginx-custom

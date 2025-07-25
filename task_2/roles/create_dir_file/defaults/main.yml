@@ -1,0 +1,5 @@
+---
+# defaults file for roles/create_dir_file
+dir_name: "my_dir"
+file_name: "test_file"
+home_path: "/home/deploy1"
